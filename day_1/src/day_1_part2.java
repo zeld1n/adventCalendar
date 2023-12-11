@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class day_1_part2 {
     public static void main(String[] args) throws IOException {
-        String fileName = "C:\\Users\\amministratore1\\Documents\\4CI_2023_2024\\asd\\adventCalendar\\day_1\\src\\textpart2.txt";
+        String fileName = "C:\\Users\\kiril\\OneDrive\\Рабочий стол\\javaAOC\\adventCalendar\\day_1\\src\\textpart2.txt";
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         ArrayList<String> list = new ArrayList<String>();
 
@@ -28,59 +28,60 @@ public class day_1_part2 {
         for (String w:words) {
             newWords.append(w+"\n");
         }
-
+        newWords.delete(newWords.length()-1,newWords.length());
         for (int i = 0; i < words.length; i++) {
             for(int j = 0;j<words[i].length();j++){
 
+                Pattern pattern = Pattern.compile("(one|two|three|four|five|six|seven|eight|nine|[1-9]|\n)", Pattern.CASE_INSENSITIVE);
+                Matcher matcher = pattern.matcher(newWords);
+                while(matcher.find()) {
+                    matcher = pattern.matcher(newWords);
+                    if(matcher.find()) {
+                        //  System.out.println(l);
+                        if (numbers[i] == null || numbers[i].equals("null\n")) {
+                            numbers[i] = "";
+                        }
+                        switch (matcher.group()) {
+                            case "one":
+                                numbers[i] += ("1");
+                                break;
+                            case "two":
+                                numbers[i] += ("2");
+                                break;
+                            case "three":
+                                numbers[i] += ("3");
+                                break;
+                            case "four":
+                                numbers[i] += ("4");
+                                break;
+                            case "five":
+                                numbers[i] += ("5");
+                                break;
+                            case "six":
+                                numbers[i] += ("6");
+                                break;
+                            case "seven":
+                                numbers[i] += ("7");
+                                break;
+                            case "eight":
+                                numbers[i] += ("8");
+                                break;
+                            case "nine":
+                                numbers[i] += ("9");
+                                break;
+                            case "\n":
+                                i++;
+                            default:
+                                numbers[i] += matcher.group();
 
-            Pattern pattern = Pattern.compile("(one|two|three|four|five|six|seven|eight|nine|[1-9])", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(newWords);
-            while(matcher.find()) {
-              //  System.out.println(l);
-                if(numbers[i]==null) {
-                    numbers[i]="";
+                        }
+                        newWords.setCharAt(matcher.start(), ' ');
+
+                    }
                 }
-                System.out.println(matcher.group());
-                System.out.println(newWords);
+            }}
 
-                switch (matcher.group()){
-                    case "one":
-                        numbers[i]+=("1");
-                        break;
-                    case "two":
-                        numbers[i]+=("2");
-                        break;
-                    case "three":
-                        numbers[i]+=("3");
-                        break;
-                    case "four":
-                        numbers[i]+=("4");
-                        break;
-                    case "five":
-                        numbers[i]+=("5");
-                        break;
-                    case "six":
-                        numbers[i]+=("6");
-                        break;
-                    case "seven":
-                        numbers[i]+=("7");
-                        break;
-                    case "eight":
-                        numbers[i]+=("8");
-                        break;
-                    case "nine":
-                        numbers[i]+=("9");
-                        break;
-                    default:
-                        numbers[i]+=matcher.group();
-
-                }
-                newWords.setCharAt(matcher.start(),' ');
-                System.out.println(newWords);
-
-            }
-        }}
-     /*   int[] numInt = new int[numbers.length];
+        int[] numInt = new int[numbers.length];
         int end;
         String first="",last;
         for (int i = 0; i < numInt.length; i++) {
@@ -99,10 +100,10 @@ public class day_1_part2 {
         for(int num:numInt){
             System.out.println(num);
             somma+=num;}
-
+        System.out.println("spazio");
         System.out.println("Somma: "+somma);
 
-*/
+
     }
 
 
