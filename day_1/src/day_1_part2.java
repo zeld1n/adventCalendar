@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class day_1_part2 {
     public static void main(String[] args) throws IOException {
-        String fileName = "C:\\Users\\kiril\\OneDrive\\Рабочий стол\\advent_of_code_Java\\day_1\\src\\textpart2.txt";
+        String fileName = "C:\\Users\\amministratore1\\Documents\\4CI_2023_2024\\asd\\adventCalendar\\day_1\\src\\textpart2.txt";
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         ArrayList<String> list = new ArrayList<String>();
 
@@ -21,14 +21,28 @@ public class day_1_part2 {
         }
         String[] words = list.toArray(new String[0]);
         String[]numbers = new String[words.length];
+
+        String l;
         int somma = 0;
-        int lastW;
+        StringBuilder newWords = new StringBuilder();
+        for (String w:words) {
+            newWords.append(w+"\n");
+        }
+
         for (int i = 0; i < words.length; i++) {
+            for(int j = 0;j<words[i].length();j++){
+
+
             Pattern pattern = Pattern.compile("(one|two|three|four|five|six|seven|eight|nine|[1-9])", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(words[i]);
+            Matcher matcher = pattern.matcher(newWords);
             while(matcher.find()) {
-                if(numbers[i]==null)
+              //  System.out.println(l);
+                if(numbers[i]==null) {
                     numbers[i]="";
+                }
+                System.out.println(matcher.group());
+                System.out.println(newWords);
+
                 switch (matcher.group()){
                     case "one":
                         numbers[i]+=("1");
@@ -61,15 +75,14 @@ public class day_1_part2 {
                         numbers[i]+=matcher.group();
 
                 }
+                newWords.setCharAt(matcher.start(),' ');
+                System.out.println(newWords);
 
             }
-            if(numbers[i]==null)
-                numbers[i]="";
-        }
-        int[] numInt = new int[numbers.length];
+        }}
+     /*   int[] numInt = new int[numbers.length];
         int end;
         String first="",last;
-        System.out.println(numbers[994]);
         for (int i = 0; i < numInt.length; i++) {
             end=numbers[i].length();
             if(!(numbers[i].isEmpty()))
@@ -88,8 +101,9 @@ public class day_1_part2 {
             somma+=num;}
 
         System.out.println("Somma: "+somma);
-    }
 
+*/
+    }
 
 
 }
